@@ -1,9 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-SQLALCHEMY_DATABASE_URL = "postgresql://hine_user:9U7vaSaGEg4wpRABuRh2walWtIIh4JNC@dpg-d16fqtodl3ps739b4akg-a.oregon-postgres.render.com/hine"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_db():
