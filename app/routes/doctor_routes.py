@@ -46,7 +46,9 @@ def login_doctor(request: DoctorLoginRequest, db: Session = Depends(get_db)):
     if not doctor or not bcrypt.checkpw(request.password.encode(), doctor.password.encode()):
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     expire = datetime.now(timezone.utc) + timedelta(hours=ACCESS_TOKEN_EXPIRE_HOURS)
-    to_encode = {"sub": doctor.id, "exp": expire}
+    to_encode = {"sub": doctor.id, 
+                 "name": f"{doctor.name} {doctor.last_name}",
+                 "exp": expire}
     token = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     # Validar el token generado
     try:
