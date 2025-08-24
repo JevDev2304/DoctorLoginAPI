@@ -12,3 +12,8 @@ class Doctor(Base):
     birth_date = Column(Date)
     eliminated = Column(Boolean, default=False)
     password = Column(String) 
+
+class Admin(Base):
+    __tablename__ = 'admins'
+    id = Column(String, primary_key=True, index=True)
+    password = Column(String) 
