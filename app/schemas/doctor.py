@@ -5,6 +5,7 @@ class DoctorRegisterRequest(BaseModel):
     id: str
     name: str
     last_name: str
+    email: str
     birth_date: date
     password: str
 
@@ -19,5 +20,5 @@ class DoctorLoginRequest(BaseModel):
     password: str
 
 class TokenResponse(BaseModel):
-    access_token: str
+    token: str
     token_type: str = "bearer" 

@@ -8,6 +8,7 @@ class Doctor(Base):
     id = Column(String, primary_key=True, index=True)
     name = Column(String)
     last_name = Column(String)
+    email = Column(String)
     birth_date = Column(Date)
     eliminated = Column(Boolean, default=False)
     password = Column(String) 
