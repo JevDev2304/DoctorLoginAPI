@@ -32,14 +32,12 @@ def register_doctor_endpoint(request: DoctorRegisterRequest, db: Session = Depen
             name=request.name,
             last_name=request.last_name,
             email=request.email,
-            birth_date=request.birth_date,
             password=request.password
         )
         return DoctorResponse(
             id=str(doctor.id),
             name=str(doctor.name),
             last_name=str(doctor.last_name),
-            birth_date=doctor.birth_date if isinstance(doctor.birth_date, date) else date.fromisoformat(str(doctor.birth_date))
         )
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
@@ -76,7 +74,6 @@ def change_password_endpoint(request: ChangePasswordRequest, db:Session = Depend
                 id=str(doctor.id),
                 name=str(doctor.name),
                 last_name=str(doctor.last_name),
-                birth_date=doctor.birth_date if isinstance(doctor.birth_date, date) else date.fromisoformat(str(doctor.birth_date))
             )
 
 

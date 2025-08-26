@@ -9,7 +9,6 @@ class Doctor(Base):
     name = Column(String)
     last_name = Column(String)
     email = Column(String)
-    birth_date = Column(Date)
     eliminated = Column(Boolean, default=False)
     password = Column(String) 
 

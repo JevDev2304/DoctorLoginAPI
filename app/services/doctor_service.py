@@ -3,7 +3,7 @@ from app.models import Doctor
 import bcrypt
 from sqlalchemy.exc import IntegrityError
 
-def register_doctor(db: Session, id: str, name: str, last_name: str, email:str,birth_date, password: str):
+def register_doctor(db: Session, id: str, name: str, last_name: str, email:str, password: str):
     # Verificar si el doctor ya existe
     existing = db.query(Doctor).filter(Doctor.id == id).first()
     if existing:
@@ -14,7 +14,6 @@ def register_doctor(db: Session, id: str, name: str, last_name: str, email:str,b
         name=name,
         last_name=last_name,
         email=email,
-        birth_date=birth_date,
         eliminated=False,
         password=hashed_password
     )

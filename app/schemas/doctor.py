@@ -6,14 +6,12 @@ class DoctorRegisterRequest(BaseModel):
     name: str
     last_name: str
     email: str
-    birth_date: date
     password: str
 
 class DoctorResponse(BaseModel):
     id: str
     name: str
     last_name: str
-    birth_date: date
 
 class DoctorLoginRequest(BaseModel):
     id: str
