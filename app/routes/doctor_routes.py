@@ -98,7 +98,7 @@ def send_2fa(request: UserEmailRequest, db:Session = Depends(get_db)):
     if not doctor.email:
         raise HTTPException(status_code=500, detail="El doctor no cuenta con correo")
     token, code = create_2fa_token(request.id)
-    send_2fa_token(doctor.email, code)
+    send_2fa_token(request.email, code)
     return TokenResponse(token=token)
 
 @router.post("/verify-2fa")
