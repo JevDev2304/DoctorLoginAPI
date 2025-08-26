@@ -106,11 +106,11 @@ def verify_2fa(request: DoubleAuthRequest):
     result = verify_2fa_token(request.token, request.code)
     if not result["valid"]:
         if result["reason"] == "expired":
-            raise HTTPException(status_code=400, detail="El código ha expirado")
+            raise HTTPException(status_code=401, detail="El código ha expirado")
         elif result["reason"] == "wrong_code":
-            raise HTTPException(status_code=400, detail="El código es incorrecto")
+            raise HTTPException(status_code=401, detail="El código es incorrecto")
         else:
-            raise HTTPException(status_code=400, detail="Token inválido")
+            raise HTTPException(status_code=401, detail="Token inválido")
     return {"message": "Autenticación completada", "user_id": result["user_id"]}
 
 
